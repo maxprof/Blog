@@ -1,7 +1,7 @@
 <h1 align="center"><%= "Category: " + @category.name %></h1>
 <div align="center">
 	<div class="row">
-	<% if logged_in? and current.user.admin? %>
+	<% if logged_in? and current_user.admin? %>
 		<span class="badge"><%= link_to "Edit category name", edit_category_path(@category) %></span>
 	<% end %>
 	</div>
