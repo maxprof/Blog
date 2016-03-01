@@ -4,7 +4,10 @@ class ArticlesController < ApplicationController
   	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
-		@article = Article.paginate(page: params[:page], per_page: 5)
+		@article = Article.paginate(page: params[:page], per_page: 5).where(["title LIKE ?","%#{params[:search]}%"])
+		@article = Article.paginate(page: params[:page], per_page: 5).where(["description LIKE ?","%#{params[:search]}%"])
+		
+
 	end
  
 	def new
@@ -41,14 +44,6 @@ class ArticlesController < ApplicationController
 		else
 			render 'edit'
 		end
-	end
-
-	def home
-		redirect_to articles_path if logged_in?
-	end
-
-	def about
-		
 	end
 
 	private
