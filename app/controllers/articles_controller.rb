@@ -6,10 +6,8 @@ class ArticlesController < ApplicationController
 	def index
 		@article = Article.paginate(page: params[:page], per_page: 5).where(["title LIKE ?","%#{params[:search]}%"])
 		@article = Article.paginate(page: params[:page], per_page: 5).where(["description LIKE ?","%#{params[:search]}%"])
-		
-
 	end
- 
+
 	def new
 		@article = Article.new
 	end
@@ -22,7 +20,7 @@ class ArticlesController < ApplicationController
 			redirect_to article_path(@article)
 		else
 			render 'new'
-		end	
+		end
 	end
 
 	def show
